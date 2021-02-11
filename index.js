@@ -14,24 +14,20 @@ var task_format_4 = '</p><span class=\"delete\"></span></div>';
 var tasks = [];
 if (localStorage.getItem("tasks")){
     tasks = JSON.parse(localStorage.getItem("tasks"));
-    document.querySelector(".counter span").textContent = countRemaining();
+    document.querySelector(".counter").textContent = countRemaining();
     showTasks(tasks);
 }
-document.querySelector(".form").addEventListener("submit", (e)=>{
-    e.preventDefault();
-    tasks.push(new task(e.target.task.value))
-    e.target.task.value = "";
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    filterSelection(0);
-    showTasks(tasks);
-});
 function countRemaining(){
     let i = 0;
-    tasks.forEach(task=>{
-        if(!task.completed)
-            i++;
-    })
-    return i;
+    if(tasks.length > 0){
+        tasks.forEach(task=>{
+            if(!task.completed)
+                i++;
+        })
+    }
+    if(i>1)
+        return i+" items left";
+    return i+" item left";
 }
 function filterSelection(index){
     for(i=0;i<3;i++)
@@ -62,9 +58,11 @@ function showTasks(tasks){
         });
     }
     var data = "";
-    temp.forEach(task=>{
-        data = data + task_format_1 + (task.completed?"completed":"") + task_format_2 + task.id + task_format_3 + task.text + task_format_4;
-    }); 
+    if(temp.length>0){
+        temp.forEach(task=>{
+            data = data + task_format_1 + (task.completed?"completed":"") + task_format_2 + task.id + task_format_3 + task.text + task_format_4;
+        }); 
+    }
     document.querySelector(".tasks").innerHTML = data;
     var check_button = document.querySelectorAll(".tasks .item .check");
     var delete_button = document.querySelectorAll(".tasks .item .delete");
@@ -80,7 +78,7 @@ function showTasks(tasks){
                         button.parentElement.classList.add("completed");
                     }
                     tasks[num].completed = !tasks[num].completed;
-                    document.querySelector(".counter span").textContent = countRemaining();
+                    document.querySelector(".counter").textContent = countRemaining();
                     localStorage.setItem("tasks", JSON.stringify(tasks));
                     break;
                 }
@@ -95,8 +93,16 @@ function showTasks(tasks){
             showTasks(tasks);
         });
     });
-    document.querySelector(".counter span").textContent = countRemaining();
+    document.querySelector(".counter").textContent = countRemaining();
 }
+document.querySelector(".form").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    tasks.push(new task(e.target.task.value))
+    e.target.task.value = "";
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    filterSelection(0);
+    showTasks(tasks);
+});
 document.querySelector(".clear").addEventListener("click", ()=>{
     tasks = tasks.filter(task => !task.completed)
     localStorage.setItem("tasks", JSON.stringify(tasks));
