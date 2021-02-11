@@ -11,7 +11,15 @@ var task_format_1 = '<div class=\"item ';
 var task_format_2 = '\" id=\"';
 var task_format_3 = '\"><span class=\"check\"></span><p class=\"text\">';
 var task_format_4 = '</p><span class=\"delete\"></span></div>';
-var tasks = [];
+var tasks = [
+    new task("Complete online JavaScript course", true),
+    new task("Jog around the park 3x"),
+    new task("10 minutes meditation"),
+    new task("Read for 1 hour"),
+    new task("Pick up groceries"),
+    new task("Complete ToDo App on Frontend Mentor"),
+];
+showTasks();
 if (localStorage.getItem("tasks")){
     tasks = JSON.parse(localStorage.getItem("tasks"));
     document.querySelector(".counter").textContent = countRemaining();
