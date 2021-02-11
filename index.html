@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Frontend Mentor | Todo app</title>
+</head>
+<body>
+
+  <div class="main">
+    <div class="head">
+      <h1 class="heading">Todo</h1>
+      <span class="theme-switch"></span>
+    </div>
+    <form>
+      <input type="text" name="task">
+      <input type="submit" hidden>
+    </form>
+    <div class="tasks-section">
+      <div class="tasks">
+        <div class="item">
+          <p class="text">Hello World</p>
+          <span></span>
+        </div>
+      </div>
+      <div class="functions">
+        <p class="counter"><span></span> items left</p>
+        <div class="filter">
+          <p class="item">All</p>
+          <p class="item">Active </p>
+          <p class="item">Completed</p>
+        </div>
+        <p class="clear">Clear Completed</p>
+      </div>
+    </div>
+    <p class="info">Drag and drop to reorder list</p>
+  </div>
+  <script src="./index.js"></script>
+</body>
+</html>
