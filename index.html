@@ -15,26 +15,40 @@
       <h1 class="heading">Todo</h1>
       <span class="theme-switch"></span>
     </div>
-    <form>
-      <input type="text" name="task">
+    <form class="form">
+      <div class="input">
+        <input type="text" name="task" class="task" autocomplete="off">
+        <span class="check"></span>
+      </div>
       <input type="submit" hidden>
     </form>
     <div class="tasks-section">
       <div class="tasks">
-        <div class="item">
+        <!-- <div class="item">
+          <span class="check"></span>
           <p class="text">Hello World</p>
-          <span></span>
+          <span class="delete"></span>
         </div>
+        <div class="item">
+          <span class="check"></span>
+          <p class="text">Hello World</p>
+          <span class="delete"></span>
+        </div> -->
       </div>
       <div class="functions">
         <p class="counter"><span></span> items left</p>
         <div class="filter">
-          <p class="item">All</p>
-          <p class="item">Active </p>
-          <p class="item">Completed</p>
+          <p class="all selected">All</p>
+          <p class="active">Active </p>
+          <p class="completed">Completed</p>
         </div>
         <p class="clear">Clear Completed</p>
       </div>
+    </div>
+    <div class="filter mobile">
+      <p class="all selected">All</p>
+      <p class="active">Active </p>
+      <p class="completed">Completed</p>
     </div>
     <p class="info">Drag and drop to reorder list</p>
   </div>

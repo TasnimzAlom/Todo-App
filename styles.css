@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+:root{
+    --bright-blue: hsl(220, 98%, 61%);
+    --check-bg: linear-gradient(to bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    --tasks-bg: hsl(235, 21%, 11%);
+    --tasks-shadow: hsl(235, 24%, 19%);
+    --funtions: hsl(234, 39%, 85%);
+    --tasks-text: hsl(236, 33%, 92%);
+    --tasks-completed: hsl(234, 11%, 52%);
+    --task-height: 70px;
+    --background: url("./images/bg-desktop-dark.jpg") no-repeat;
+}
+body{
+    margin: 0;
+    font-size: 18px;
+    font-family: 'Josefin Sans', sans-serif;
+    background: var(--background);
+    background-size: contain;
+    color: var(--tasks-text);
+}
+.main{
+    width: 90%;
+    max-width: 500px;    
+    margin: 2rem auto;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.theme-switch{
+    width: 26px;
+    height: 26px;
+    background: url("./images/icon-sun.svg") no-repeat;
+    cursor: pointer;
+    transition: all 1s;
+}
+.light .theme-switch{
+    background: url("./images/icon-moon.svg") no-repeat;
+}
+.heading{
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+}
+form{
+    width: 100%;
+    height: var(--task-height);
+    position: relative;
+}
+.input{
+    position: relative;
+}
+.input .task{
+    letter-spacing: 2px;
+    font-size: 1em;
+    padding: 10px 15px;
+    padding-left: 55px;
+    margin: 0;
+    width: calc(100% - 70px);
+    height: calc(var(--task-height) - 20px);
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: var(--tasks-text);
+    background-color: var(--tasks-bg);
+    caret-color: blue;
+}
+.check{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid var(--tasks-text);
+    cursor: pointer;
+}
+.input .check{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px; 
+}
+.tasks-section{
+    background-color: var(--tasks-bg);
+    border-radius: 4px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 2px 2px hsla(235, 21%, 11%, 0.05),
+                0 4px 4px 4px hsla(235, 21%, 11%, 0.05),
+                0 8px 8px 8px hsla(235, 21%, 11%, 0.05),
+                0 16px 16px 16px hsla(235, 21%, 11%, 0.05);
+}
+.tasks{
+    max-height: calc((var(--task-height) + 1px)*5);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.tasks .item{
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 1em;
+    padding: 10px 15px;
+    margin: 0;
+    width: calc(100% - 30px);
+    min-height: calc(var(--task-height) - 20px);
+    border-bottom: 1px solid var(--tasks-text);
+    display: grid;
+    grid-template-columns: 25px 1fr 25px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.delete{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: url("./images/icon-cross.svg") no-repeat center;
+    cursor: pointer;
+    visibility: hidden;
+}
+.tasks .item:hover .delete{
+    visibility: visible;
+}
+.completed .text{
+    text-decoration: line-through;
+}
+.completed .check{
+    background: url("./images/icon-check.svg") no-repeat center, var(--check-bg);
+    border: none;
+}
+.functions{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    border-top: 1px solid var(--tasks-text);
+    font-size: 0.75em;
+}
+.filter{
+    display: flex;
+    gap: 1rem;
+}
+.filter > * {
+    cursor: pointer;
+}
+.filter.mobile{
+    display: none;
+}
+.all.selected, .active.selected, .completed.selected{
+    color: var(--bright-blue);
+}
+.clear{
+    cursor: pointer;
+}
+.info{
+    text-align: center;
+}
+@media (max-width: 768px){
+    body{
+        background: url("./images/bg-mobile-dark.jpg") no-repeat;
+        background-size: contain;
+    }
+    .delete{
+        visibility: visible;
+    }
+}
+@media (max-width: 500px){
+    .functions{
+        grid-template-columns: repeat(2, auto);
+    }
+    .filter{
+        display: none;
+    }
+    .filter.mobile{
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--tasks-bg);
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+}
