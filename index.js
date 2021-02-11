@@ -15,7 +15,7 @@ var tasks = [];
 if (localStorage.getItem("tasks")){
     tasks = JSON.parse(localStorage.getItem("tasks"));
     document.querySelector(".counter").textContent = countRemaining();
-    showTasks(tasks);
+    showTasks();
 }
 function countRemaining(){
     let i = 0;
@@ -40,7 +40,7 @@ function filterSelection(index){
         button.classList.add("selected");
     });
 }
-function showTasks(tasks){
+function showTasks(){
     var temp = [];
     if(selected[0]){
         temp = tasks;
@@ -90,7 +90,8 @@ function showTasks(tasks){
             let id = button.parentElement.id;
             tasks = tasks.filter(task => task.id != id);
             localStorage.setItem("tasks", JSON.stringify(tasks));
-            showTasks(tasks);
+            showTasks();
+            document.querySelector(".counter").textContent = countRemaining();
         });
     });
     document.querySelector(".counter").textContent = countRemaining();
@@ -101,12 +102,12 @@ document.querySelector(".form").addEventListener("submit", (e)=>{
     e.target.task.value = "";
     localStorage.setItem("tasks", JSON.stringify(tasks));
     filterSelection(0);
-    showTasks(tasks);
+    showTasks();
 });
 document.querySelector(".clear").addEventListener("click", ()=>{
     tasks = tasks.filter(task => !task.completed)
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    showTasks(tasks);
+    showTasks();
 });
 document.querySelector(".theme-switch").addEventListener("click", ()=>{
     if(document.body.classList.contains("light"))
@@ -118,7 +119,7 @@ filters.forEach((filter,index) =>{
     filter.forEach(button =>{
         button.addEventListener("click", ()=>{
             filterSelection(index);
-            showTasks(tasks);
+            showTasks();
         });
     });
 });
